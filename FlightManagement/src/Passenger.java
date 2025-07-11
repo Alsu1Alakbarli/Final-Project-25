@@ -1,4 +1,6 @@
-public class Passenger {
+import java.io.Serializable; //object can be saved to a file in binary format
+
+public class Passenger implements Serializable{
     
 
     private String name;
