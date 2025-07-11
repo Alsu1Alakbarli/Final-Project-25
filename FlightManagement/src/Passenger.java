@@ -59,10 +59,22 @@ public class Passenger implements Serializable{
         this.passengerID = passengerID;
     }
 
+
+
     public void changeSeat(String newSeat){
         this.seat = newSeat;
     }
 
-    
+    @Override //returns all passenger info as one line of text (CSV format)
+    public String toString() {
+        return passengerID + "," + name + "," + surname + "," + passportID + "," + seat + "," + flightID;
+    }
+
+    public static Passenger fromString(String line) { //creates Passenger object from line of text
+        String[] parts = line.split(",");
+        return new Passenger(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]); //then Create new Passenger using the parts from the line
+    }
+
+
 
 }
