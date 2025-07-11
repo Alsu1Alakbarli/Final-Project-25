@@ -1,4 +1,4 @@
-import java.io.Serializable; //object can be saved to a file in binary format
+import java.io.Serializable; //object can be saved to a file in binary format(.dat)
 
 public class Passenger implements Serializable{
     
