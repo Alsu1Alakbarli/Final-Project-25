@@ -82,10 +82,15 @@ class Flight implements Serializable{
     }
 
 
-
     public void delay(int delay_in_minute){
         this.departure_time = this.departure_time + delay_in_minute;
         this.arrival_time = this.arrival_time + delay_in_minute;
     }
+
+    public String toString(){
+        return "Flight ID: " + flightID + ", Airline: " + airlineName + ", From: " + departure + ", To: " + arrive + 
+        ", Departure: " + departure_time + ", Arrival: " + arrival_time + ", Price: " + price + ", Seats: " + seatCapacity;
+    }
+
 
 }

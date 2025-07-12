@@ -59,8 +59,6 @@ public class Passenger implements Serializable{
         this.passengerID = passengerID;
     }
 
-
-
     public void changeSeat(String newSeat){
         this.seat = newSeat;
     }
