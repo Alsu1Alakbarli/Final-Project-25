@@ -11,8 +11,6 @@ class Flight implements Serializable{
     private String flightID;
     private String airlineName;
     private int seatCapacity;
-
-    private ArrayList<Passenger> passengers = new ArrayList<>(); //List of passengers
     
     // cosntructor
     public Flight(String departure, String arrive, String departure_time, String arrival_time, String flightID, String airlineName, int price, int seatCapacity) {
@@ -74,13 +72,6 @@ class Flight implements Serializable{
     public void setSeatCapacity(int seatCapacity) {
         this.seatCapacity = seatCapacity;
     }
-    public ArrayList<Passenger> getPassengers() {
-        return passengers;
-    }
-    public void setPassengers(ArrayList<Passenger> passengers) {
-        this.passengers = passengers;
-    }
-
 
     public void delay(int delay_in_minute){
         this.departure_time = this.departure_time + delay_in_minute;

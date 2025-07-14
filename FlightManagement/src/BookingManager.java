@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class BookingManager {
 
     private ArrayList<Flight> flights = new ArrayList<>();
-    private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public BookingManager() {
         System.out.println("Booking manager constructor");
@@ -23,20 +22,6 @@ public class BookingManager {
         System.out.println("Flight created successfully.");
 }
 
-
-    public void createPassenger(Passenger passenger){
-        passengers.add(passenger);
-        Flight flight = findFlightByID(passenger.getFlightID());
-
-        if (flight != null){
-            flight.getPassengers().add(passenger);
-            System.out.println("Passenger booking created successfully");
-        }
-        else{
-            System.out.println("All seats sold out!!!");
-        }
-
-    }
 
     public void listFlights(){
         System.out.println("Total number of flights: " + flights.size());
