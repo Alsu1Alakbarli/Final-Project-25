@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.*;
 
 
 public class BookingManager {
@@ -174,4 +173,28 @@ public class BookingManager {
             }
         }
     }
+    public void sortFlightsByArrivalCity(){
+    flights.sort(Comparator.comparing(Flight::getArrive));
+    System.out.println("Flights sorted by arrival city");
+}
+
+public void sortFlightsByArrivalTime(){
+    flights.sort(Comparator.comparing(Flight::getArrival_time));
+    System.out.println("Flights sorted by arrival time");
+}
+
+public void sortFlightsByFlightID(){
+    flights.sort(Comparator.comparing(Flight::getFlightID));
+    System.out.println("Flights sorted by flight ID");
+}
+
+public void sortFlightsByAirlineName(){
+    flights.sort(Comparator.comparing(Flight::getAirlineName));
+    System.out.println("Flights sorted by airline name");
+}
+
+public void sortFlightsBySeatCapacity(){
+    flights.sort(Comparator.comparingInt(Flight::getSeatCapacity));
+    System.out.println("Flights sorted by seat capacity");
+}
 }
