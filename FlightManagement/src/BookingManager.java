@@ -8,14 +8,17 @@ public class BookingManager {
     private ArrayList<Flight> flights = new ArrayList<>();
     private ArrayList<Passenger> passengers = new ArrayList<>();
 
-    public BookingManager(){
-        // read from local
-    }
+    public BookingManager() {
+    flights = FlightDataHelper.loadFlights();
+    System.out.println("Loaded " + flights.size() + " flights from file.");
+}
+
 
     public void createFlight(Flight flight){
-        flights.add(flight);
-        System.out.println("Flight created successfully.");
-    }
+    flights.add(flight);
+    FlightDataHelper.saveFlights(flights);
+    System.out.println("Flight created successfully.");
+}
 
 
     public void createPassenger(Passenger passenger){
@@ -157,20 +160,24 @@ public class BookingManager {
                 break;
         }
 
+        if (flag) {
+    FlightDataHelper.saveFlights(flights);
+    }
+
+
         return flag;
 
     }
 
     public boolean deleteFlight(String flight_ID){
-
-        Flight flight = findFlightByID(flight_ID);
-
-        if (flight != null){
-            flights.remove(flight);
-            return true;
-        }
-
-        return false;
+    Flight flight = findFlightByID(flight_ID);
+    if (flight != null){
+        flights.remove(flight);
+        FlightDataHelper.saveFlights(flights);
+        return true;
     }
+    return false;
+}
+
     
 }
