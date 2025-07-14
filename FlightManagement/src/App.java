@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -24,11 +25,17 @@ public class App {
             System.out.println("6. Sort flights by departure time");
             System.out.println("7. Edit a flight");
             System.out.println("8. Delete a flight");
-            System.out.println("\nPlease enter your choice: ");
 
-            int user_in = readInt(scn, "");
+            System.out.println("9. Filter by price range"); // BONUS 
+            System.out.println("10. Filter by city"); // BONUS
+            System.out.println("11. Filter by airline name"); // BONUS
+            System.out.println("0. Exit");
 
-            switch (user_in) {
+            int choice = readInt(scn, "Choose an option: ");
+            scn.nextLine(); // Clear buffer
+
+
+            switch (choice) {
                 case 1:
                     scn.nextLine();
                     System.out.println("User wants to create a new flight:");
@@ -66,17 +73,16 @@ public class App {
                     break;
 
                 case 3: //search for flights
-                    scn.nextLine(); 
-                    System.out.println("Enter keyword to search flights:");
+                    System.out.print("Enter keyword: ");
                     String keyword = scn.nextLine();
-
-                    // show all matching flights
-                    System.out.println("Search results:");
-                    for (Flight f : manager.searchFlights(keyword)) {
-                        System.out.println(f);
+                    List<Flight> results = manager.searchFlights(keyword);
+                    if (results.isEmpty()) {
+                        System.out.println("No flights found.");
+                    } else {
+                        for (Flight f : results) System.out.println(f);
                     }
                     break;
-
+                    
                 case 4: //sort by price
                     manager.sortFlightsByPrice();
                     manager.listFlights();
@@ -106,43 +112,63 @@ public class App {
 
                     // try to delete the flight
                     boolean deleted = manager.deleteFlight(deleteID);
-                    if (deleted) {
-                        System.out.println("Flight deleted successfully.");
-                    } else {
-                        System.out.println("Flight not found.");
-                    }
+                    System.out.println(deleted ? "Flight deleted." : "Flight not found.");
                     break;
+
+                    //Bonus 
+
+                    case 9: // BONUS: Filter by price range
+                    int min = readInt(scn, "Minimum price: ");
+                    int max = readInt(scn, "Maximum price: ");
+                    manager.filterByPriceRange(min, max);
+                    break;
+
+                case 10: // BONUS: Filter by city
+                    System.out.print("Enter departure or arrival city: ");
+                    String city = scn.nextLine();
+                    manager.filterByCity(city);
+                    break;
+
+                case 11: // BONUS: Filter by airline name
+                    System.out.print("Enter airline name: ");
+                    String airline = scn.nextLine();
+                    manager.filterByAirline(airline);
+                    break;
+
+                case 0: // Exit
+                    System.out.println("Exiting...");
+                    return;
 
                 default:
                     System.out.println("Invalid choice.");
-                    break;
             }
 
+            
             System.out.println("\nDo you want to continue? (yes/no): ");
             String cont = scn.next();
             if (!cont.equalsIgnoreCase("yes")) {
                 System.out.println("Exiting system...");
                 break;
             }
+                        System.out.println("-----------------------------------------------------------");
+
         }
 
         scn.close();
     }
 
-    //helps to read number safelu
-    public static int readInt(Scanner scn, String message) {
+    //helps to read number safely
+    public static int readInt(Scanner scn, String prompt) {
         int value;
         while (true) {
             try {
-                if (!message.isEmpty()) System.out.print(message); /// show prompt if not empty
-                value = Integer.parseInt(scn.next()); // try to read number
-                break;
+                System.out.print(prompt);
+                value = Integer.parseInt(scn.nextLine());
+                return value;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid number. Try again.");
-                scn.nextLine(); 
             }
         }
-        return value;
     }
 }
 
