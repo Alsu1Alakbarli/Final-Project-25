@@ -8,11 +8,11 @@ public class App {
         BookingManager manager = new BookingManager();
 
         //create sample flights
-        System.out.println("Do you want to create base sample flights? (yes/no): ");
-        String answer = scn.next();
-        if (answer.equalsIgnoreCase("yes")) {
-            FlightDataHelper.createSampleFlights();
-        }
+        // System.out.println("Do you want to create base sample flights? (yes/no): ");
+        // String answer = scn.next();
+        // if (answer.equalsIgnoreCase("yes")) {
+        //     FlightDataHelper.createSampleFlights();
+        // }
 
         while (true) {
             System.out.println("=========  Welcome to the Flight Management Menu  =========");
@@ -79,14 +79,17 @@ public class App {
 
                 case 4: //sort by price
                     manager.sortFlightsByPrice();
+                    manager.listFlights();
                     break;
 
                 case 5: //sort by departure city
                     manager.sortFlightsByDepartureCity();
+                    manager.listFlights();
                     break;
 
                 case 6: //sort by departure time
                     manager.sortFlightsByDepartureTime();
+                    manager.listFlights();
                     break;
 
                 case 7: //edit flight's information

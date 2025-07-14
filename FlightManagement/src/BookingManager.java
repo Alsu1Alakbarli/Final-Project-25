@@ -9,15 +9,18 @@ public class BookingManager {
     private ArrayList<Passenger> passengers = new ArrayList<>();
 
     public BookingManager() {
-    flights = FlightDataHelper.loadFlights();
-    System.out.println("Loaded " + flights.size() + " flights from file.");
-}
+        System.out.println("Booking manager constructor");
+        flights = FlightDataHelper.loadFlights();
+        System.out.println("Loaded " + flights.size() + " flights from file.");
+    }
+
+
 
 
     public void createFlight(Flight flight){
-    flights.add(flight);
-    FlightDataHelper.saveFlights(flights);
-    System.out.println("Flight created successfully.");
+        flights.add(flight);
+        FlightDataHelper.saveFlights(flights);
+        System.out.println("Flight created successfully.");
 }
 
 
@@ -38,7 +41,7 @@ public class BookingManager {
     public void listFlights(){
         System.out.println("Total number of flights: " + flights.size());
         for (Flight flight : flights) {
-            flight.toString();
+            System.out.println(flight.toString());
         }
     }
 

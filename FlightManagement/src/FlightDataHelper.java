@@ -70,5 +70,7 @@ public class FlightDataHelper {
 
         //llet user know that sample flights were created
         System.out.println("Sample flights created and saved.");
+
+        
     }
 }
